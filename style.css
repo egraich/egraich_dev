@@ -121,24 +121,19 @@ h2 {
     color: #ff007f;
     text-decoration: none;
     font-weight: bold;
-    border: 1px solid #ff007f;
+    border: 2px solid #ff007f;
     padding: 8px 16px;
     border-radius: 6px;
     transition: 0.2s;
+    background-color: transparent;
 }
 
 .project-link:hover {
-    background-color: #ff007f;
+    background-color: rgba(255, 0, 127, 0.1);
+    box-shadow: 0 0 15px rgba(255, 0, 127, 0.6);
     color: #ffffff;
-    box-shadow: 0 0 10px rgba(255, 0, 127, 0.6);
 }
 
 .project-link.live-btn {
-    background-color: #ff007f;
-    color: #ffffff;
-}
-
-.project-link.live-btn:hover {
-    background-color: transparent;
-    color: #ff007f;
+    border-color: #ff007f;
 }
