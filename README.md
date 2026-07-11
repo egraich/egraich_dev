@@ -1,5 +1,5 @@
 # egraich.dev
-My personal-protfolio site with my projects, contacts and info about me.
+My personal-portfolio site with my projects, contacts and info about me.
 
 ---
 
@@ -12,13 +12,13 @@ Or you can just open my deployed [site](https://egraich.github.io/egraich_dev/)
 
 # Features
 
-* Links to navigation
+* Smooth scrolling navigation links
 * Script to automatically update year in footer
 * Hovers on link-buttons
-* Bades for projects, as in GitHub
+* Badges for projects, as in GitHub
 
 ---
 
 # Acknowledgements
 
-I used sites as pinterest and html5up.net for inspiration
+I used sites as pinterest and html5up.net for inspiration.
