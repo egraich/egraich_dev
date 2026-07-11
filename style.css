@@ -1,0 +1,11 @@
+.My_card{
+    width: 450px;
+    height: 150px;
+    background-color: #3ea357;
+}
+
+.text{
+    font-size: 35px;
+    color: black;
+    text-align: center;
+}
