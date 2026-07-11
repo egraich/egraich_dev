@@ -134,3 +134,11 @@ h2 {
     color: #ffffff;
     box-shadow: 0 0 15px rgba(255, 0, 127, 0.6);
 }
+
+footer {
+    margin-top: 60px;
+    margin-bottom: 20px;
+    font-size: 14px;
+    color: #57606a;
+    text-align: center;
+}
