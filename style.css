@@ -8,6 +8,9 @@ body {
     flex-direction: column;
     align-items: center;
 }
+html {
+    scroll-behavior: smooth;
+}
 
 header {
     text-align: center;
@@ -150,3 +153,5 @@ footer {
     color: #57606a;
     text-align: center;
 }
+
+
