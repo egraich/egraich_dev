@@ -129,11 +129,7 @@ h2 {
 }
 
 .project-link:hover {
-    background-color: rgba(255, 0, 127, 0.1);
-    box-shadow: 0 0 15px rgba(255, 0, 127, 0.6);
+    background-color: #ff007f;
     color: #ffffff;
-}
-
-.project-link.live-btn {
-    border-color: #ff007f;
+    box-shadow: 0 0 15px rgba(255, 0, 127, 0.6);
 }
