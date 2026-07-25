@@ -22,3 +22,6 @@ Or you can just open my deployed [site](https://egraich.dev)
 # Acknowledgements
 
 I used sites like pinterest and html5up.net for inspiration.
+
+
+Made by [egraich](https:/egraich.dev)
