@@ -6,8 +6,8 @@
     <title>Redirecting...</title>
     <style>
         body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-            background-color: #121212;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+            background-color: #000000;
             color: #ffffff;
             display: flex;
             justify-content: center;
@@ -15,31 +15,29 @@
             height: 100vh;
             margin: 0;
         }
-        .container {
+        .loader {
             text-align: center;
         }
-        .btn {
-            display: inline-block;
-            margin-top: 15px;
-            padding: 10px 20px;
-            background-color: #ffffff;
-            color: #000000;
+        a {
+            color: #38bdf8;
             text-decoration: none;
-            border-radius: 5px;
-            font-weight: bold;
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <p>Opening your email application...</p>
-        <p style="font-size: 14px; color: #888;">If nothing happens, click the button below:</p>
-        <a class="btn" href="mailto:egraich.dev@gmail.com">Send Email</a>
+    <div class="loader">
+        <p>Opening your email client...</p>
+        <p style="font-size: 14px; color: #666;">If nothing happens, <a id="mail-link" href="mailto:egraich.dev@gmail.com">click here</a>.</p>
     </div>
+
     <script>
-        setTimeout(function() {
-            window.location.href = "mailto:egraich.dev@gmail.com";
-        }, 500);
+        window.addEventListener('DOMContentLoaded', () => {
+            const link = document.getElementById('mail-link');
+            // Эмуляция реального клика по ссылке для обхода блокировок браузера
+            setTimeout(() => {
+                link.click();
+            }, 100);
+        });
     </script>
 </body>
 </html>
