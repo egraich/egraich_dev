@@ -286,7 +286,13 @@
         points.position.y = -3.4;
         scene.add(points);
 
+        // teardown() disposes the renderer; the window/document listeners
+        // below must never touch it afterwards (a stale visibilitychange
+        // could resurrect the rAF chain over a disposed WebGL context)
+        var dead = false;
+
         function resize() {
+          if (dead) return;
           var w = canvas.clientWidth || innerWidth;
           var h = canvas.clientHeight || innerHeight;
           renderer.setSize(w, h, false);
@@ -299,6 +305,7 @@
         // gentle mouse parallax
         var tx = 0, ty = 0, cx = 0, cy = 0;
         document.addEventListener('pointermove', function (e) {
+          if (dead) return;
           tx = (e.clientX / innerWidth - 0.5) * 2;
           ty = (e.clientY / innerHeight - 0.5) * 2;
         }, { passive: true });
@@ -314,6 +321,7 @@
           if (rafId === null) rafId = requestAnimationFrame(frame);
         }
         document.addEventListener('visibilitychange', function () {
+          if (dead) return;
           running = !document.hidden;
           if (running) { lastT = performance.now(); schedule(); }
         });
@@ -322,6 +330,7 @@
         var probeFrames = 0, probeStart = 0, probed = false;
 
         function teardown() {
+          dead = true;
           running = false;
           if (rafId !== null) cancelAnimationFrame(rafId);
           rafId = null;

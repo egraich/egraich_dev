@@ -347,8 +347,6 @@ img { display: block; max-width: 100%; }
 
 /* ---------- sections ---------- */
 
-main { display: block; }
-
 .section {
   max-width: 1060px;
   margin: 0 auto;
@@ -630,7 +628,6 @@ html.js .reveal.in {
 
 html.js .reveal.d1 { transition-delay: .08s; }
 html.js .reveal.d2 { transition-delay: .16s; }
-html.js .reveal.d3 { transition-delay: .24s; }
 
 /* ---------- custom cursor (high tier only) ---------- */
 

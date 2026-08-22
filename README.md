@@ -17,8 +17,9 @@ work starts:
 
 On the high tier an **FPS probe** runs for the first 120 frames — if the
 device can't hold ~50 fps, three.js is disposed and the 2D fallback takes
-over. Rendering also pauses when the tab is hidden or the hero is scrolled
-out of view. three.js is only ever fetched via `await import(...)` inside
-the high-tier branch, so weaker devices never download a byte of it.
+over. Rendering pauses when the tab is hidden (the background is fixed and
+stays visible through the whole page, so it never freezes on scroll).
+three.js is only ever fetched via `await import(...)` inside the
+high-tier branch, so weaker devices never download a byte of it.
 
 Made by [egraich](https://egraich.dev) <3
