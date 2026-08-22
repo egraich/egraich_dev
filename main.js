@@ -146,12 +146,39 @@
     }
   }
 
-  /* ----------------------------------------------------
-     6. Animated background
-     high  -> three.js particle wave (dynamic import + FPS probe)
-     medium-> lightweight 2D canvas particles
-     low   -> nothing (static CSS gradients stay)
-  ---------------------------------------------------- */
+  /* 6. Animated background: high -> three.js wave (dynamic import + FPS
+     probe), medium -> 2D canvas particles, low -> static CSS gradients.
+     Shared scheduler: visibilitychange never stacks a second rAF chain
+     on a live one; frame(now, dt) returning false halts the loop, and
+     stop() is permanent (nothing may resurrect a disposed renderer). */
+  function startRafLoop(frameFn) {
+    var stopped = false, running = true, rafId = null, lastT = 0;
+    function schedule() {
+      if (rafId === null) rafId = requestAnimationFrame(step);
+    }
+    function step(now) {
+      rafId = null;
+      if (!running) return;
+      var dt = Math.min((now - lastT) / 1000, 0.1) || 0.016;
+      lastT = now;
+      if (frameFn(now, dt) !== false) schedule();
+    }
+    document.addEventListener('visibilitychange', function () {
+      if (stopped) return;
+      running = !document.hidden;
+      if (running) { lastT = performance.now(); schedule(); }
+    });
+    schedule();
+    return {
+      stop: function () {
+        stopped = true;
+        running = false;
+        if (rafId !== null) cancelAnimationFrame(rafId);
+        rafId = null;
+      }
+    };
+  }
+
   var canvas = document.getElementById('bg');
 
   function showCanvas() { if (canvas) canvas.classList.add('visible'); }
@@ -183,23 +210,8 @@
       });
     }
 
-    // single-scheduler render loop: visibilitychange must never stack a
-    // second rAF chain on top of a live one — stacked chains made the
-    // animation accelerate and eat CPU the longer the tab lived
-    var running = true, rafId = null, lastT = 0, t = 0;
-    function schedule() {
-      if (rafId === null) rafId = requestAnimationFrame(frame);
-    }
-    document.addEventListener('visibilitychange', function () {
-      running = !document.hidden;
-      if (running) { lastT = performance.now(); schedule(); }
-    });
-
-    function frame(now) {
-      rafId = null;
-      if (!running) return;
-      var dt = Math.min((now - lastT) / 1000, 0.1) || 0.016;
-      lastT = now;
+    var t = 0;
+    startRafLoop(function (now, dt) {
       t += dt;
       ctx.clearRect(0, 0, W, H);
       for (var i = 0; i < parts.length; i++) {
@@ -216,10 +228,8 @@
           : 'rgba(38,145,161,' + (a * 0.6).toFixed(3) + ')';
         ctx.fill();
       }
-      schedule();
-    }
+    });
     showCanvas();
-    schedule();
   }
 
   // -- three.js particle wave (high tier) --
@@ -286,9 +296,8 @@
         points.position.y = -3.4;
         scene.add(points);
 
-        // teardown() disposes the renderer; the window/document listeners
-        // below must never touch it afterwards (a stale visibilitychange
-        // could resurrect the rAF chain over a disposed WebGL context)
+        // teardown() disposes the renderer — resize/parallax listeners
+        // must never touch it afterwards (the rAF loop is killed by loop.stop())
         var dead = false;
 
         function resize() {
@@ -313,27 +322,13 @@
         // pause only when the tab is hidden — the background is fixed and
         // visible through the whole page, so freezing it mid-scroll (or
         // blanking it after an F11 resize) looks broken.
-        // single-scheduler: visibilitychange must never stack a second rAF
-        // chain on a live one — stacked chains made the wave accelerate
-        // and eat CPU the longer the tab lived
-        var running = true, rafId = null, lastT = 0;
-        function schedule() {
-          if (rafId === null) rafId = requestAnimationFrame(frame);
-        }
-        document.addEventListener('visibilitychange', function () {
-          if (dead) return;
-          running = !document.hidden;
-          if (running) { lastT = performance.now(); schedule(); }
-        });
-
+        //
         // FPS probe: if the device can't hold ~50fps, fall back quietly
         var probeFrames = 0, probeStart = 0, probed = false;
 
         function teardown() {
           dead = true;
-          running = false;
-          if (rafId !== null) cancelAnimationFrame(rafId);
-          rafId = null;
+          loop.stop();
           geo.dispose();
           mat.dispose();
           renderer.dispose();
@@ -343,11 +338,7 @@
         }
 
         var t = 0, posAttr = geo.attributes.position;
-        function frame(now) {
-          rafId = null;
-          if (!running) return;
-          var dt = Math.min((now - lastT) / 1000, 0.1) || 0.016;
-          lastT = now;
+        var loop = startRafLoop(function (now, dt) {
           t += dt * 0.5; // wave speed in rad/s — same on 60Hz and 144Hz
 
           if (probeFrames === 0) probeStart = now;
@@ -373,12 +364,10 @@
           if (!probed && probeFrames >= 120) {
             probed = true;
             var fps = 1000 * 120 / (now - probeStart);
-            if (fps < 50) { teardown(); return; }
+            if (fps < 50) { teardown(); return false; }
           }
-          if (running) schedule();
-        }
+        });
         showCanvas();
-        schedule();
       })
       .catch(function () { startMediumBG(); }); // CDN unreachable -> 2D fallback
   }
