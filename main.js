@@ -38,6 +38,15 @@
   var yearEl = document.getElementById('year');
   if (yearEl) yearEl.textContent = new Date().getFullYear();
 
+  // age from birthday (Oct 22, 2009), computed in the visitor's local time;
+  // the HTML keeps a static fallback number for no-JS visitors and crawlers
+  document.querySelectorAll('[data-age]').forEach(function (el) {
+    var now = new Date();
+    var age = now.getFullYear() - 2009;
+    if (now < new Date(now.getFullYear(), 9, 22)) age--; // Oct 22 not reached yet
+    el.textContent = age;
+  });
+
   // remember explicit language choice (used by the auto-detect on /)
   document.querySelectorAll('[data-lang]').forEach(function (a) {
     a.addEventListener('click', function () {
