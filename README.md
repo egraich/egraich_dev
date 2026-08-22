@@ -21,4 +21,4 @@ over. Rendering also pauses when the tab is hidden or the hero is scrolled
 out of view. three.js is only ever fetched via `await import(...)` inside
 the high-tier branch, so weaker devices never download a byte of it.
 
-Made by [egraich](https://egraich.dev)
+Made by [egraich](https://egraich.dev) <3
