@@ -66,6 +66,42 @@ img { display: block; max-width: 100%; }
   mask-image: radial-gradient(ellipse 90% 60% at 50% 0%, #000 0%, transparent 72%);
 }
 
+/* aurora glow — medium tier only (no three.js there). The blobs are
+   pre-blurred radial gradients moved by transform, so nothing repaints;
+   reduced-motion users land on the low tier and never see them run */
+.aurora { position: absolute; inset: 0; display: none; }
+
+html.tier-medium .aurora { display: block; }
+
+.aurora i {
+  position: absolute; width: 60vmax; height: 60vmax; border-radius: 50%;
+  will-change: transform;
+  animation: aurora-drift 80s ease-in-out infinite alternate;
+}
+
+.aurora i:nth-child(1) {
+  left: -18vmax; top: -22vmax;
+  background: radial-gradient(circle, rgba(var(--deep-rgb), .55), rgba(var(--deep-rgb), 0) 65%);
+  animation-duration: 74s;
+}
+
+.aurora i:nth-child(2) {
+  right: -22vmax; bottom: -26vmax;
+  background: radial-gradient(circle, rgba(var(--teal-rgb), .28), rgba(var(--teal-rgb), 0) 62%);
+  animation-duration: 92s; animation-delay: -30s;
+}
+
+.aurora i:nth-child(3) {
+  left: 30%; top: 55%;
+  background: radial-gradient(circle, rgba(var(--deep-2-rgb), .5), rgba(var(--deep-2-rgb), 0) 60%);
+  animation-duration: 110s; animation-delay: -60s;
+}
+
+@keyframes aurora-drift {
+  from { transform: translate3d(0, 0, 0) rotate(0deg) scale(1); }
+  to   { transform: translate3d(9vmax, 6vmax, 0) rotate(40deg) scale(1.18); }
+}
+
 /* header */
 .site-header {
   position: fixed; top: 0; left: 0; right: 0; z-index: 50;
@@ -79,6 +115,17 @@ img { display: block; max-width: 100%; }
   background: rgba(var(--bg-rgb), .78);
   backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
   border-bottom-color: var(--border);
+}
+
+/* reading progress — a hairline above the header, scaleX'd from JS;
+   no transition so it tracks the scrollbar 1:1 */
+.scroll-progress {
+  position: fixed; top: 0; left: 0; z-index: 60;
+  width: 100%; height: 2px;
+  background: linear-gradient(90deg, var(--teal), var(--accent));
+  box-shadow: 0 0 10px rgba(var(--accent-rgb), .5);
+  transform-origin: 0 50%; transform: scaleX(0);
+  pointer-events: none;
 }
 
 .logo {
