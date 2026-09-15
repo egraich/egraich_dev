@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Сертификаты — egraich.dev</title>
+  <meta name="description" content="Сертификаты egraich — подтверждённые программы и челленджи. Hack Club Stardance (при участии NASA и AMD) и другие.">
+  <meta name="author" content="egraich">
+  <meta name="theme-color" content="#0b0d13">
+
+  <link rel="canonical" href="https://egraich.dev/ru/certs/">
+  <link rel="alternate" hreflang="en" href="https://egraich.dev/certs/">
+  <link rel="alternate" hreflang="ru" href="https://egraich.dev/ru/certs/">
+  <link rel="alternate" hreflang="x-default" href="https://egraich.dev/certs/">
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="/favicon-192.png">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.jpg">
+
+  <meta property="og:title" content="Сертификаты — egraich.dev">
+  <meta property="og:description" content="Подтверждённые сертификаты: Hack Club Stardance (при участии NASA и AMD) и другие.">
+  <meta property="og:image" content="https://egraich.dev/preview.jpg">
+  <meta property="og:url" content="https://egraich.dev/ru/certs/">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="ru_RU">
+  <meta name="twitter:card" content="summary">
+
+  <link rel="stylesheet" href="/style.css">
+  <script>document.documentElement.classList.add('js');</script>
+</head>
+<body>
+  <div class="bg-wrap" aria-hidden="true">
+    <div class="aurora"><i></i><i></i><i></i></div>
+    <canvas id="bg"></canvas>
+  </div>
+  <div class="bg-grid" aria-hidden="true"></div>
+  <div class="scroll-progress" aria-hidden="true"></div>
+
+  <header class="site-header">
+    <a class="logo" href="/ru/">egraich<span class="logo-dot">.dev</span></a>
+    <nav class="site-nav">
+      <a href="/ru/#about">Обо мне</a>
+      <a href="/ru/#projects">Проекты</a>
+      <a href="/ru/#skills">Навыки</a>
+      <a href="/ru/#contact">Контакты</a>
+    </nav>
+    <a class="lang-switch" href="/certs/" data-lang="en" title="English version">EN</a>
+  </header>
+
+  <main>
+    <section class="page-hero">
+      <p class="page-kicker">~/certs</p>
+      <h1 class="page-title" data-decode>Сертификаты</h1>
+      <p class="page-sub">Подтверждённые вехи из программ и челленджей — каждая впаяна на свою плату.</p>
+    </section>
+
+    <section class="section">
+      <div class="certs-grid">
+
+        <article class="card cert-card tilt reveal">
+          <div class="tilt-inner">
+            <div class="cert-die">
+              <span class="pulse cert-led" aria-hidden="true"></span>
+              <span class="cert-pin1" aria-hidden="true"></span>
+              <span class="cert-part">EG-SD-Y9M4N8</span>
+              <h3 class="cert-name">Hack Club Stardance</h3>
+              <span class="cert-date">выдан июль 2026 &middot; 36 ч подтверждено</span>
+            </div>
+            <p class="cert-desc">Выдан за 30+ часов подтверждённой работы над проектами в летнем челлендже Hack Club 2026 (при участии NASA и AMD). Часы логировались ежедневными девлогами и проверялись командой.</p>
+            <div class="chip-row">
+              <span class="chip">Hack Club</span>
+              <span class="chip">NASA</span>
+              <span class="chip">AMD</span>
+              <span class="chip">2026</span>
+            </div>
+            <div class="cert-links">
+              <a class="project-link" href="https://stardance.hackclub.com/certificate?code=Y9M4N8" target="_blank" rel="noopener">
+                Проверить сертификат
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7"/><path d="M8 7h9v9"/></svg>
+              </a>
+            </div>
+          </div>
+          <div class="tilt-glare" aria-hidden="true"></div>
+        </article>
+
+        <article class="card cert-card cert-socket tilt reveal d1">
+          <div class="tilt-inner">
+            <div class="cert-die cert-die-socket">
+              <span class="cert-pin1" aria-hidden="true"></span>
+              <span class="cert-part">EG-??-??????</span>
+              <h3 class="cert-name">Следующий сертификат</h3>
+              <span class="cert-date">разъём зарезервирован &middot; пайка продолжается</span>
+            </div>
+            <p class="cert-desc">Следующий уже на столе. Это посадочное место останется на плате, пока он не выйдет в релиз.</p>
+          </div>
+          <div class="tilt-glare" aria-hidden="true"></div>
+        </article>
+
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <p class="footer-copy">&copy; <span id="year"></span> egraich</p>
+      <p class="footer-status"><span class="pulse"></span>открыт к возможностям</p>
+    </div>
+  </footer>
+
+  <div class="cursor-ring" aria-hidden="true"></div>
+  <div class="cursor-dot" aria-hidden="true"></div>
+
+  <script src="/main.js" defer></script>
+</body>
+</html>

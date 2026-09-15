@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Certificates — egraich.dev</title>
+  <meta name="description" content="Certificates of egraich — verified programs and challenges. Hack Club Stardance (with NASA & AMD) and more.">
+  <meta name="author" content="egraich">
+  <meta name="theme-color" content="#0b0d13">
+
+  <link rel="canonical" href="https://egraich.dev/certs/">
+  <link rel="alternate" hreflang="en" href="https://egraich.dev/certs/">
+  <link rel="alternate" hreflang="ru" href="https://egraich.dev/ru/certs/">
+  <link rel="alternate" hreflang="x-default" href="https://egraich.dev/certs/">
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="/favicon-192.png">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.jpg">
+
+  <meta property="og:title" content="Certificates — egraich.dev">
+  <meta property="og:description" content="Verified certificates: Hack Club Stardance (with NASA & AMD) and more.">
+  <meta property="og:image" content="https://egraich.dev/preview.jpg">
+  <meta property="og:url" content="https://egraich.dev/certs/">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="en_US">
+  <meta name="twitter:card" content="summary">
+
+  <link rel="stylesheet" href="/style.css">
+  <script>
+    (function () {
+      document.documentElement.classList.add('js');
+      try {
+        if (!localStorage.getItem('lang') && /^ru\b/i.test(navigator.language || '')) {
+          location.replace('/ru/certs/');
+        }
+      } catch (e) { /* private mode — stay on EN */ }
+    })();
+  </script>
+</head>
+<body>
+  <div class="bg-wrap" aria-hidden="true">
+    <div class="aurora"><i></i><i></i><i></i></div>
+    <canvas id="bg"></canvas>
+  </div>
+  <div class="bg-grid" aria-hidden="true"></div>
+  <div class="scroll-progress" aria-hidden="true"></div>
+
+  <header class="site-header">
+    <a class="logo" href="/">egraich<span class="logo-dot">.dev</span></a>
+    <nav class="site-nav">
+      <a href="/#about">About</a>
+      <a href="/#projects">Projects</a>
+      <a href="/#skills">Skills</a>
+      <a href="/#contact">Contact</a>
+    </nav>
+    <a class="lang-switch" href="/ru/certs/" data-lang="ru" title="Русская версия">RU</a>
+  </header>
+
+  <main>
+    <section class="page-hero">
+      <p class="page-kicker">~/certs</p>
+      <h1 class="page-title" data-decode>Certificates</h1>
+      <p class="page-sub">Verified milestones from programs and challenges — each one soldered into place.</p>
+    </section>
+
+    <section class="section">
+      <div class="certs-grid">
+
+        <article class="card cert-card tilt reveal">
+          <div class="tilt-inner">
+            <div class="cert-die">
+              <span class="pulse cert-led" aria-hidden="true"></span>
+              <span class="cert-pin1" aria-hidden="true"></span>
+              <span class="cert-part">EG-SD-Y9M4N8</span>
+              <h3 class="cert-name">Hack Club Stardance</h3>
+              <span class="cert-date">issued Jul 2026 &middot; 36 h verified</span>
+            </div>
+            <p class="cert-desc">Awarded for 30+ hours of verified project work during Hack Club's Summer 2026 challenge, run with NASA and AMD. Hours were logged through daily devlogs and reviewed by staff.</p>
+            <div class="chip-row">
+              <span class="chip">Hack Club</span>
+              <span class="chip">NASA</span>
+              <span class="chip">AMD</span>
+              <span class="chip">2026</span>
+            </div>
+            <div class="cert-links">
+              <a class="project-link" href="https://stardance.hackclub.com/certificate?code=Y9M4N8" target="_blank" rel="noopener">
+                Verify certificate
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7"/><path d="M8 7h9v9"/></svg>
+              </a>
+            </div>
+          </div>
+          <div class="tilt-glare" aria-hidden="true"></div>
+        </article>
+
+        <article class="card cert-card cert-socket tilt reveal d1">
+          <div class="tilt-inner">
+            <div class="cert-die cert-die-socket">
+              <span class="cert-pin1" aria-hidden="true"></span>
+              <span class="cert-part">EG-??-??????</span>
+              <h3 class="cert-name">Next certificate</h3>
+              <span class="cert-date">socket reserved &middot; soldering in progress</span>
+            </div>
+            <p class="cert-desc">The next one is already on the bench. This footprint stays on the board until it ships.</p>
+          </div>
+          <div class="tilt-glare" aria-hidden="true"></div>
+        </article>
+
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <p class="footer-copy">&copy; <span id="year"></span> egraich</p>
+      <p class="footer-status"><span class="pulse"></span>open to opportunities</p>
+    </div>
+  </footer>
+
+  <div class="cursor-ring" aria-hidden="true"></div>
+  <div class="cursor-dot" aria-hidden="true"></div>
+
+  <script src="/main.js" defer></script>
+</body>
+</html>

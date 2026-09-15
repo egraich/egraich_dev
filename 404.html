@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>404 — egraich.dev</title>
+  <meta name="robots" content="noindex">
+  <meta name="theme-color" content="#0b0d13">
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="/favicon-192.png">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.jpg">
+
+  <link rel="stylesheet" href="/style.css">
+  <script>document.documentElement.classList.add('js');</script>
+</head>
+<body>
+  <div class="bg-wrap" aria-hidden="true">
+    <div class="aurora"><i></i><i></i><i></i></div>
+    <canvas id="bg"></canvas>
+  </div>
+  <div class="bg-grid" aria-hidden="true"></div>
+
+  <header class="site-header">
+    <a class="logo" href="/">egraich<span class="logo-dot">.dev</span></a>
+  </header>
+
+  <main class="nf-hero">
+    <div class="nf-stage" aria-hidden="true">
+      <span class="nf-ring"></span>
+      <span class="nf-ring r2"></span>
+      <span class="nf-ring r3"></span>
+      <p class="nf-code" data-decode>404</p>
+    </div>
+    <h1 class="nf-title" data-decode data-i18n="nf-title">Signal not found</h1>
+    <p class="nf-text" data-i18n="nf-text">The page you requested is out of range — moved, retired, or never broadcast.</p>
+    <p class="nf-path"><span data-i18n="nf-path">no response from</span> <code id="nf-path-code">/…</code></p>
+    <div class="nf-actions">
+      <a class="btn btn-primary" href="/" data-i18n="nf-home">Back home</a>
+      <a class="btn btn-ghost" href="/#projects" data-i18n="nf-projects">View projects</a>
+    </div>
+    <a class="nf-cat" href="/cat" data-i18n="nf-cat">psst&hellip; or go pet the cat</a>
+  </main>
+
+  <div class="cursor-ring" aria-hidden="true"></div>
+  <div class="cursor-dot" aria-hidden="true"></div>
+
+  <script>
+    // fill in the missing path, then swap to Russian for RU visitors —
+    // must run before main.js so the decode animation captures the final text
+    (function () {
+      try {
+        document.getElementById('nf-path-code').textContent = location.pathname || '/';
+        var lang = null;
+        try { lang = localStorage.getItem('lang'); } catch (e) {}
+        if (!lang && /^ru\b/i.test(navigator.language || '')) lang = 'ru';
+        if (lang !== 'ru') return;
+        document.documentElement.lang = 'ru';
+        var t = {
+          'nf-title': 'Сигнал не найден',
+          'nf-text': 'Запрошенная страница вне зоны доступа — её перенесли, списали или она вообще не выходила в эфир.',
+          'nf-path': 'нет ответа от',
+          'nf-home': 'На главную',
+          'nf-projects': 'Смотреть проекты',
+          'nf-cat': 'псст\u2026 или погладь кота'
+        };
+        for (var k in t) {
+          var el = document.querySelector('[data-i18n="' + k + '"]');
+          if (el) el.textContent = t[k];
+        }
+      } catch (e) { /* stay EN */ }
+    })();
+  </script>
+  <script src="/main.js" defer></script>
+</body>
+</html>
